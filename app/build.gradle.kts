@@ -10,8 +10,8 @@ plugins {
 }
 
 // Read local properties
-val localProperties = Properties()
-val localPropertiesFile = rootProject.file("local.properties")
+val localProperties = Properties() // вызываем класса для работы со свойствами ключ значение
+val localPropertiesFile = rootProject.file("local.properties") // указываем путь до файла
 if (localPropertiesFile.exists()) {
     localProperties.load(FileInputStream(localPropertiesFile))
 }
