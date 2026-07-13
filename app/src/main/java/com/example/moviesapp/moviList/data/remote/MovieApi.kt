@@ -2,6 +2,7 @@ package com.example.moviesapp.moviList.data.remote
 
 import com.example.moviesapp.BuildConfig
 import com.example.moviesapp.moviList.data.remote.respond.MovieDTO
+import com.example.moviesapp.moviList.data.remote.respond.MovieListDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -12,7 +13,7 @@ interface MovieApi {
         @Path("category") category: String,
         @Query("page") page: Int,
         @Query("api_key") apiKey: String = API_KEY,
-    ): MovieDTO
+    ): MovieListDto
 
     companion object{
         const val BASE_URL = "https://api.themoviedb.org/3/"
