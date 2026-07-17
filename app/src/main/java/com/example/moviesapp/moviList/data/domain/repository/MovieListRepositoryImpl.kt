@@ -65,6 +65,19 @@ class MovieListRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getMovie(id: Int): Flow<Resource<Movie>> {
-        TODO("Not yet implemented")
+        return flow{
+            emit(Resource.Loading(loading = true))
+            val localMovieList = movieDatabase.movieDao.getMovieById(id)
+
+            if(localMovieList != null){
+                emit(Resource.Success(localMovieList.toMovie(localMovieList.category)))
+                emit(Resource.Loading(loading = false))
+                return@flow
+            }
+
+            emit(Resource.Error("Not such movie"))
+            emit(Resource.Loading(loading = false))
+        }
+
     }
 }
