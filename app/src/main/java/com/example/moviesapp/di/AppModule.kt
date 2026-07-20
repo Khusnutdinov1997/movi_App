@@ -24,7 +24,7 @@ object AppModule {
     @Singleton
     fun provideDatabase(app: App): MovieDatabase{
        return Room.databaseBuilder(
-           context = app,
+           context = app, // contex - это связующий мостик между приложением и системой андроид
            klass = MovieDatabase::class.java,
            name = "MovieDatabase"
        ).build()
