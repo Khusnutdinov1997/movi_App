@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.moviesapp.presentation.MovieListViewModel
 import com.example.moviesapp.presentation.components.BottomNavigationBar
@@ -65,7 +66,20 @@ fun HomeScreen(
                 navController = bottomNavController,
                 startDestination = Screens.PopularMovieList.route
             ){
-
+                composable(Screens.PopularMovieList.route){
+                    PopularScreen(
+                        onEvent = viewModel::onEvent,
+                        movieListState = movieListState,
+                        navHostController = navController
+                    )
+                }
+                composable(Screens.UpcomingMovieList.route){
+                    UpcomingScreen(
+                        onEvent = viewModel::onEvent,
+                        movieListState= movieListState,
+                        navHostController = navController
+                    )
+                }
             }
         }
     }
