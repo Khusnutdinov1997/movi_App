@@ -34,9 +34,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.ContentScale.Companion.Crop
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
@@ -139,4 +141,32 @@ fun MovieItem(
 
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MovieItemPreview() {
+    val navController = rememberNavController()
+    val movie = Movie(
+        adult = false,
+        backdrop_path = "/62890.jpg",
+        genre_ids = listOf(1, 2, 3),
+        id = 1,
+        original_language = "en",
+        original_title = "The Shawshank Redemption",
+        overview = "Over the course of several years, two convicts form a friendship...",
+        popularity = 100.0,
+        poster_path = "/q6y0Go1tsY5Ctu6kPz090S7fzxE.jpg",
+        release_date = "1994-09-23",
+        title = "The Shawshank Redemption",
+        video = false,
+        vote_average = 9.3,
+        vote_count = 2000,
+        category = "Popular"
+    )
+
+    MovieItem(
+        movie = movie,
+        navHostController = navController
+    )
 }
