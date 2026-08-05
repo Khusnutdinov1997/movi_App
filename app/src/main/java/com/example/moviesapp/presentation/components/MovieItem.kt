@@ -1,6 +1,5 @@
 package com.example.moviesapp.presentation.components
 
-import android.provider.MediaStore
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -12,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -31,7 +29,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.ContentScale.Companion.Crop
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
@@ -48,7 +45,7 @@ import com.example.moviesapp.moviList.data.remote.MovieApi
 import com.example.moviesapp.utils.RatingBar
 import com.example.moviesapp.utils.Screens
 
-// ДЗ: сделать preview для этого компонента( если ошибка то иконку, если загрузилось то картинка )
+// ДЗ: сделать preview для этого компонента(если ошибка то иконку, если загрузилось то картинка)
 
 @Composable
 fun MovieItem(
@@ -108,6 +105,21 @@ fun MovieItem(
                 contentDescription = null,
                 contentScale = Crop
             )
+        }else{
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(6.dp)
+                    .height(250.dp)
+                    .clip(RoundedCornerShape(22.dp))
+                    .background(color = MaterialTheme.colorScheme.primaryContainer),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    imageVector = Icons.Rounded.ImageNotSupported,
+                    contentDescription = null
+                )
+            }
         }
 
         Spacer(modifier = Modifier.height(6.dp))
@@ -147,26 +159,26 @@ fun MovieItem(
 @Composable
 fun MovieItemPreview() {
     val navController = rememberNavController()
-    val movie = Movie(
-        adult = false,
-        backdrop_path = "/62890.jpg",
-        genre_ids = listOf(1, 2, 3),
+    val movie1 = Movie(
         id = 1,
-        original_language = "en",
-        original_title = "The Shawshank Redemption",
-        overview = "Over the course of several years, two convicts form a friendship...",
-        popularity = 100.0,
-        poster_path = "/q6y0Go1tsY5Ctu6kPz090S7fzxE.jpg",
-        release_date = "1994-09-23",
-        title = "The Shawshank Redemption",
-        video = false,
-        vote_average = 9.3,
-        vote_count = 2000,
-        category = "Popular"
+        category = "Popular",
+        adult = false,
+        backdrop_path = "String",
+        genre_ids = listOf(1),
+        original_language = "String",
+        original_title = "String",
+        overview = "String",
+        popularity = 9.7,
+        poster_path = "String",
+        release_date = "21.04.2025",
+        title = "Movie 1",
+        video = true,
+        vote_average = 8.0,
+        vote_count = 350
     )
 
     MovieItem(
-        movie = movie,
+        movie = movie1,
         navHostController = navController
     )
 }
