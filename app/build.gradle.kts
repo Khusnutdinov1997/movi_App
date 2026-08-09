@@ -10,8 +10,8 @@ plugins {
 }
 
 // Read local properties
-val localProperties = Properties()
-val localPropertiesFile = rootProject.file("local.properties")
+val localProperties = Properties() // вызываем класса для работы со свойствами ключ значение
+val localPropertiesFile = rootProject.file("local.properties") // указываем путь до файла
 if (localPropertiesFile.exists()) {
     localProperties.load(FileInputStream(localPropertiesFile))
 }
@@ -27,7 +27,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        // Add API key to BuildConfig
+        // Внутри это блока gradle берет значение из local.properties по ключу move_api_key и создаете в BuildConfig переменную
         buildConfigField("String", "MOVIE_API_KEY", "\"${localProperties.getProperty("MOVIE_API_KEY", "")}\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -56,7 +56,7 @@ android {
 
     buildFeatures {
         compose = true
-        buildConfig = true
+        buildConfig = true // На этой строчке даем разрешение на генерацию файла
     }
 }
 
