@@ -17,28 +17,34 @@ import kotlinx.coroutines.launch
 class DetailsViewModel @Inject constructor(
     private val repository: MovieListRepository,
     savedStateHandle: SavedStateHandle // получает аргументы навигации и сохраняет состояния при пересоздании viewModel
-): ViewModel() {
-    val _detailsState = MutableStateFlow(DetailsState())
-    private val detailsState = _detailsState.asStateFlow()
+) : ViewModel() {
+    private val _detailsState = MutableStateFlow(DetailsState())
+    val detailsState = _detailsState.asStateFlow()
 
     private val movieId = savedStateHandle.get<Int>("movieId") ?: -1
 
-    fun getMovie(id: Int){
+    init {
+        getMovie(movieId)
+    }
+    fun getMovie(id: Int) {
         viewModelScope.launch {
             _detailsState.update { state ->
                 state.copy(isLoading = true)
             }
             repository.getMovie(id).collectLatest { result ->
-                when(result){
+                when (result) {
                     is Resource.Success -> {
                         _detailsState.update { state ->
                             state.copy(movie = result.data, isLoading = false)
                         }
                     }
+
                     is Resource.Error -> {
                         _detailsState.update { state ->
-                        state.copy(isLoading = false)}
+                            state.copy(isLoading = false)
+                        }
                     }
+
                     is Resource.Loading -> {
                         _detailsState.update { state ->
                             state.copy(isLoading = result.loading)
