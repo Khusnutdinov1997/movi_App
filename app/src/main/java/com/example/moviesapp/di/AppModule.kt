@@ -1,7 +1,7 @@
 package com.example.moviesapp.di
 
+import android.app.Application
 import androidx.room.Room
-import com.example.moviesapp.App
 import com.example.moviesapp.moviList.data.local.MovieDatabase
 import com.example.moviesapp.moviList.data.remote.MovieApi
 import dagger.Module
@@ -22,7 +22,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideDatabase(app: App): MovieDatabase{
+    fun provideDatabase(app: Application): MovieDatabase{
        return Room.databaseBuilder(
            context = app, // contex - это связующий мостик между приложением и системой андроид
            klass = MovieDatabase::class.java,

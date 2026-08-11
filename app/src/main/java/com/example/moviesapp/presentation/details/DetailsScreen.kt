@@ -1,6 +1,5 @@
 package com.example.moviesapp.presentation.details
 
-import android.widget.RatingBar
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -30,14 +29,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Size
 import com.example.moviesapp.moviList.data.remote.MovieApi
 import com.example.moviesapp.utils.RatingBar
-import kotlinx.coroutines.flow.MutableStateFlow
 
 @Composable
 fun DetailsScreen(
