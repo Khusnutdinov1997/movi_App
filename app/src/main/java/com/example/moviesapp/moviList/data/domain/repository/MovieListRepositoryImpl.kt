@@ -52,7 +52,7 @@ class MovieListRepositoryImpl @Inject constructor(
                 return@flow
             }
 
-            val movieEntities = movieListFromApi.result.let { dTOS ->
+            val movieEntities = movieListFromApi.results.let { dTOS ->
                 dTOS.map { dTO -> dTO.toMovieEntity(category) }
             }
 
